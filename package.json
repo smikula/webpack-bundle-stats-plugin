@@ -4,5 +4,11 @@
   "description": "Plugin to generate a smaller stats object for Webpack",
   "main": "lib/index.js",
   "author": "Scott Mikula <mikula@gmail.com>",
+  "scripts": {
+    "build": "yarn tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  },
   "license": "MIT"
 }
