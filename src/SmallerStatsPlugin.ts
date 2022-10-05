@@ -11,8 +11,6 @@ export class SmallerStatsPlugin {
             // TODO: Is there a better hook to tap than statsFactory?
             compilation.hooks.statsFactory.tap('SmallerStatsPlugin', () => {
                 const stats = getStatsFromCompilation(compilation);
-                console.log('SmallerStatsPlugin', compilation, stats);
-                debugger;
 
                 if (this.options.outputFile) {
                     fs.writeFileSync(this.options.outputFile, JSON.stringify(stats, null, 2));
