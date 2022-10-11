@@ -1,7 +1,7 @@
 {
-  "name": "webpack-smaller-stats-plugin",
-  "version": "1.0.0",
-  "description": "Plugin to generate a smaller stats object for Webpack",
+  "name": "webpack-bundle-stats-plugin",
+  "version": "0.1.0",
+  "description": "Export internal bundling details from Webpack",
   "main": "lib/index.js",
   "author": "Scott Mikula <mikula@gmail.com>",
   "scripts": {

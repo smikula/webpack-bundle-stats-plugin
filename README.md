@@ -1,3 +1,3 @@
-# webpack-smaller-stats-plugin
+# webpack-bundle-stats-plugin
 
-Plugin to generate a smaller stats object for Webpack
+Export internal bundling details from Webpack
