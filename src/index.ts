@@ -1,1 +1,1 @@
-export { SmallerStatsPlugin } from './SmallerStatsPlugin';
+export { BundleStatsPlugin } from './BundleStatsPlugin';
