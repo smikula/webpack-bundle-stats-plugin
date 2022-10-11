@@ -1,7 +1,7 @@
-import { Compilation, NormalModule } from 'webpack';
-import { BetterStats, Chunk, ChunkGroup } from './types/BetterStats';
+import { Compilation } from 'webpack';
+import { BundleStats, Chunk, ChunkGroup } from './types/BundleStats';
 
-export function getStatsFromCompilation(compilation: Compilation): BetterStats {
+export function getStatsFromCompilation(compilation: Compilation): BundleStats {
     return {
         chunkGroups: getChunkGroups(compilation),
         chunks: getChunks(compilation),

@@ -1,6 +1,6 @@
-import { BetterStats } from './BetterStats';
+import { BundleStats } from './BundleStats';
 
 export interface PluginOptions {
     outputFile?: string;
-    onComplete?: (stats: BetterStats) => void;
+    onComplete?: (stats: BundleStats) => void;
 }
