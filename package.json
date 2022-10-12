@@ -2,7 +2,8 @@
   "name": "webpack-bundle-stats-plugin",
   "version": "0.1.0",
   "description": "Export internal bundling details from Webpack",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
   "author": "Scott Mikula <mikula@gmail.com>",
   "scripts": {
     "build": "yarn tsc"
