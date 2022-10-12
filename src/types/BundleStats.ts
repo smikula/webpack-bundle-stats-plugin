@@ -15,4 +15,4 @@ export interface Chunk {
     name?: string;
 }
 
-type ChunkId = string | number;
+export type ChunkId = string | number;

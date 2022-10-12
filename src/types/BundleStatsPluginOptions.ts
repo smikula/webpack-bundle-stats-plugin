@@ -1,6 +1,6 @@
 import { BundleStats } from './BundleStats';
 
-export interface PluginOptions {
+export interface BundleStatsPluginOptions {
     outputFile?: string;
     onComplete?: (stats: BundleStats) => void;
 }
