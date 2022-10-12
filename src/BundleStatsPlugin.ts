@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import { Compiler, Compilation } from 'webpack';
 import { getStatsFromCompilation } from './getStatsFromCompilation';
-import { PluginOptions } from './types/PluginOptions';
+import { BundleStatsPluginOptions } from './types/BundleStatsPluginOptions';
 
 export class BundleStatsPlugin {
-    constructor(private options: PluginOptions = {}) {}
+    constructor(private options: BundleStatsPluginOptions = {}) {}
 
     apply(compiler: Compiler) {
         compiler.hooks.compilation.tap('BundleStatsPlugin', (compilation: Compilation) => {
