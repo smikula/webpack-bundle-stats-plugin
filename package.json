@@ -1,6 +1,6 @@
 {
   "name": "webpack-bundle-stats-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Export internal bundling details from Webpack",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
