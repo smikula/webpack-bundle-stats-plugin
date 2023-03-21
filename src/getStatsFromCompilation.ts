@@ -43,9 +43,13 @@ function getModules(compilation: Compilation): any[] {
     return [...compilation.modules].map(m => ({
         moduleType: m.constructor.name,
         readableIdentifier: m.readableIdentifier(compilation.requestShortener),
+
+        // TODO: Seems like this is not that interesting, since it can be derived from chunk data,
+        // and it doesn't include chuncks where this module is in a concatenated module
         getModuleChunks: compilation.chunkGraph.getModuleChunks(m).map(c => c.id),
         modules: (m as any).modules?.map((m2: any) =>
             m2.readableIdentifier(compilation.requestShortener)
         ),
+        size: m.size(),
     }));
 }
