@@ -33,6 +33,9 @@ function getChunks(compilation: Compilation): Chunk[] {
         id: c.id || '<null>',
         name: c.name || undefined,
         files: [...c.files],
+        modules: compilation.chunkGraph
+            .getChunkModules(c)
+            .map(m => m.readableIdentifier(compilation.requestShortener)),
     }));
 }
 
