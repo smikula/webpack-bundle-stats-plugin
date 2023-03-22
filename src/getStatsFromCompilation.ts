@@ -1,4 +1,4 @@
-import { Compilation } from 'webpack';
+import { Compilation, Module } from 'webpack';
 import { BundleStats, Chunk, ChunkGroup } from './types/BundleStats';
 
 export function getStatsFromCompilation(compilation: Compilation): any {
@@ -40,16 +40,18 @@ function getChunks(compilation: Compilation): Chunk[] {
 }
 
 function getModules(compilation: Compilation): any[] {
-    return [...compilation.modules].map(m => ({
+    return [...compilation.modules].map(m => getModule(m, compilation));
+}
+
+function getModule(m: Module, compilation: Compilation): any {
+    return {
         moduleType: m.constructor.name,
         readableIdentifier: m.readableIdentifier(compilation.requestShortener),
 
         // TODO: Seems like this is not that interesting, since it can be derived from chunk data,
         // and it doesn't include chuncks where this module is in a concatenated module
         getModuleChunks: compilation.chunkGraph.getModuleChunks(m).map(c => c.id),
-        modules: (m as any).modules?.map((m2: any) =>
-            m2.readableIdentifier(compilation.requestShortener)
-        ),
+        modules: (m as any).modules?.map((m2: any) => getModule(m2, compilation)),
         size: m.size(),
-    }));
+    };
 }
