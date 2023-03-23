@@ -1,6 +1,7 @@
 export interface BundleStats {
     chunkGroups: ChunkGroup[];
     chunks: Chunk[];
+    modules: Module[];
 }
 
 export interface ChunkGroup {
@@ -16,3 +17,10 @@ export interface Chunk {
 }
 
 export type ChunkId = string | number;
+
+export interface Module {
+    moduleType: string;
+    readableIdentifier: string;
+    modules?: Module[];
+    size: number;
+}

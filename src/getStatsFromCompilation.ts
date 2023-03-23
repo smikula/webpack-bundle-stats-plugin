@@ -1,7 +1,7 @@
-import { Compilation, Module } from 'webpack';
-import { BundleStats, Chunk, ChunkGroup } from './types/BundleStats';
+import { Compilation, Module as RawModule } from 'webpack';
+import { BundleStats, Chunk, ChunkGroup, Module } from './types/BundleStats';
 
-export function getStatsFromCompilation(compilation: Compilation): any {
+export function getStatsFromCompilation(compilation: Compilation): BundleStats {
     return {
         chunkGroups: getChunkGroups(compilation),
         chunks: getChunks(compilation),
@@ -29,15 +29,15 @@ function getChunks(compilation: Compilation): Chunk[] {
     }));
 }
 
-function getModules(compilation: Compilation): any[] {
+function getModules(compilation: Compilation): Module[] {
     return [...compilation.modules].map(m => getModule(m, compilation));
 }
 
-function getModule(m: Module, compilation: Compilation): any {
+function getModule(m: RawModule, compilation: Compilation): Module {
     return {
         moduleType: m.constructor.name,
         readableIdentifier: m.readableIdentifier(compilation.requestShortener),
-        modules: (m as any).modules?.map((m2: any) => getModule(m2, compilation)),
+        modules: (m as any).modules?.map((m2: RawModule) => getModule(m2, compilation)),
         size: m.size(),
     };
 }
