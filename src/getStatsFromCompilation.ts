@@ -2,7 +2,10 @@ import { Compilation, Module as RawModule } from 'webpack';
 import { BundleStats, Chunk, ChunkGroup, Module } from './types/BundleStats';
 
 export function getStatsFromCompilation(compilation: Compilation): BundleStats {
+    const { version } = require('../package.json');
+
     return {
+        webpackBundleStatsPluginVersion: version,
         chunkGroups: getChunkGroups(compilation),
         chunks: getChunks(compilation),
         modules: getModules(compilation),
