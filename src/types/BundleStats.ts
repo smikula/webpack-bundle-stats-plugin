@@ -1,4 +1,5 @@
 export interface BundleStats {
+    webpackBundleStatsPluginVersion: string;
     chunkGroups: ChunkGroup[];
     chunks: Chunk[];
     modules: Module[];
