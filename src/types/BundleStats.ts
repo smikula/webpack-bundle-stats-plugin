@@ -15,6 +15,8 @@ export interface ChunkGroup {
 export interface Chunk {
     id: ChunkId;
     name?: string;
+    files: string[];
+    modules: string[];
 }
 
 export type ChunkId = string | number;
