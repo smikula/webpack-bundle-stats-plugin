@@ -13,6 +13,7 @@ export function getStatsFromCompilation(compilation: Compilation): BundleStats {
 
 function getChunkGroups(compilation: Compilation): ChunkGroup[] {
     return compilation.chunkGroups.map(cg => ({
+        chunkGroupType: cg.constructor.name,
         id: cg.id,
         name: cg.name || undefined,
         children: [...cg.childrenIterable].map(cg2 => cg2.id),

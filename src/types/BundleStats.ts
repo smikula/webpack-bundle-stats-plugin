@@ -5,6 +5,7 @@ export interface BundleStats {
 }
 
 export interface ChunkGroup {
+    chunkGroupType: string;
     id: string;
     name?: string;
     children: string[];
