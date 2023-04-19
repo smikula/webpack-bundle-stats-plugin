@@ -2,7 +2,6 @@ export interface BundleStats {
     webpackBundleStatsPluginVersion: string;
     chunkGroups: ChunkGroup[];
     chunks: Chunk[];
-    modules: Module[];
 }
 
 export interface ChunkGroup {
@@ -16,7 +15,7 @@ export interface Chunk {
     id: ChunkId;
     name?: string;
     files: string[];
-    modules: string[];
+    modules: Module[];
 }
 
 export type ChunkId = string | number;

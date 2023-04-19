@@ -8,7 +8,6 @@ export function getStatsFromCompilation(compilation: Compilation): BundleStats {
         webpackBundleStatsPluginVersion: version,
         chunkGroups: getChunkGroups(compilation),
         chunks: getChunks(compilation),
-        modules: getModules(compilation),
     };
 }
 
@@ -26,14 +25,8 @@ function getChunks(compilation: Compilation): Chunk[] {
         id: c.id || '<null>',
         name: c.name || undefined,
         files: [...c.files],
-        modules: compilation.chunkGraph
-            .getChunkModules(c)
-            .map(m => m.readableIdentifier(compilation.requestShortener)),
+        modules: compilation.chunkGraph.getChunkModules(c).map(m => getModule(m, compilation)),
     }));
-}
-
-function getModules(compilation: Compilation): Module[] {
-    return [...compilation.modules].map(m => getModule(m, compilation));
 }
 
 function getModule(m: RawModule, compilation: Compilation): Module {
