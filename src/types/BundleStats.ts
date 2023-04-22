@@ -1,7 +1,12 @@
 export interface BundleStats {
     webpackBundleStatsPluginVersion: string;
+    assets: Record<string, Asset>;
     chunkGroups: ChunkGroup[];
     chunks: Chunk[];
+}
+
+export interface Asset {
+    size: number;
 }
 
 export interface ChunkGroup {
