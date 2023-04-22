@@ -1,14 +1,24 @@
 import { Compilation, Module as RawModule } from 'webpack';
-import { BundleStats, Chunk, ChunkGroup, Module } from './types/BundleStats';
+import { Asset, BundleStats, Chunk, ChunkGroup, Module } from './types/BundleStats';
 
 export function getStatsFromCompilation(compilation: Compilation): BundleStats {
     const { version } = require('../package.json');
 
     return {
         webpackBundleStatsPluginVersion: version,
+        assets: getAssets(compilation),
         chunkGroups: getChunkGroups(compilation),
         chunks: getChunks(compilation),
     };
+}
+
+function getAssets(compilation: Compilation): Record<string, Asset> {
+    const assets: Record<string, Asset> = {};
+    for (let assetName of compilation.assetsInfo.keys()) {
+        assets[assetName] = { size: compilation.assetsInfo.get(assetName)!.size! };
+    }
+
+    return assets;
 }
 
 function getChunkGroups(compilation: Compilation): ChunkGroup[] {
