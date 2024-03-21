@@ -28,6 +28,12 @@ function getChunkGroups(compilation: Compilation): ChunkGroup[] {
         name: cg.name || undefined,
         children: [...cg.childrenIterable].map(cg2 => cg2.id),
         chunks: cg.chunks.map(c => c.id!),
+        origins: cg.origins.map(origin => ({
+            request: origin.request,
+            module:
+                (origin.module && origin.module.readableIdentifier(compilation.requestShortener)) ||
+                undefined,
+        })),
     }));
 }
 
