@@ -36,5 +36,9 @@ export interface Module {
 
 export interface Origin {
     request: string;
-    module?: string;
+    module?: OriginModule;
+}
+
+export interface OriginModule {
+    readableIdentifier: string;
 }
