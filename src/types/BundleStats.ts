@@ -15,6 +15,7 @@ export interface ChunkGroup {
     name?: string;
     children: string[];
     chunks: ChunkId[];
+    origins: Origin[];
 }
 
 export interface Chunk {
@@ -31,4 +32,13 @@ export interface Module {
     readableIdentifier: string;
     modules?: Module[];
     size: number;
+}
+
+export interface Origin {
+    request: string;
+    module?: OriginModule;
+}
+
+export interface OriginModule {
+    readableIdentifier: string;
 }

@@ -1,5 +1,5 @@
 import { Compilation, Module as RawModule } from 'webpack';
-import { Asset, BundleStats, Chunk, ChunkGroup, Module } from './types/BundleStats';
+import { Asset, BundleStats, Chunk, ChunkGroup, Module, OriginModule } from './types/BundleStats';
 
 export function getStatsFromCompilation(compilation: Compilation): BundleStats {
     const { version } = require('../package.json');
@@ -28,6 +28,10 @@ function getChunkGroups(compilation: Compilation): ChunkGroup[] {
         name: cg.name || undefined,
         children: [...cg.childrenIterable].map(cg2 => cg2.id),
         chunks: cg.chunks.map(c => c.id!),
+        origins: cg.origins.map(origin => ({
+            request: origin.request,
+            module: getOriginModule(origin.module, compilation),
+        })),
     }));
 }
 
@@ -47,4 +51,14 @@ function getModule(m: RawModule, compilation: Compilation): Module {
         modules: (m as any).modules?.map((m2: RawModule) => getModule(m2, compilation)),
         size: m.size(),
     };
+}
+
+function getOriginModule(m: RawModule, compilation: Compilation): OriginModule | undefined {
+    if (m) {
+        return {
+            readableIdentifier: m.readableIdentifier(compilation.requestShortener),
+        };
+    } else {
+        return undefined;
+    }
 }
